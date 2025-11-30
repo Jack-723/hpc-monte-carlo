@@ -1,0 +1,27 @@
+Bootstrap: docker
+From: python:3.9-slim
+
+%post
+    # Update and install system dependencies (MPI)
+    apt-get update && apt-get install -y \
+        build-essential \
+        openmpi-bin \
+        libopenmpi-dev \
+        git \
+        python3-pip
+
+    # Upgrade pip
+    pip install --upgrade pip
+
+    # Install Python libraries
+    pip install numpy mpi4py matplotlib pandas
+
+%environment
+    # Set environment variables for the cluster
+    export OMPI_MCA_btl_vader_single_copy_mechanism=none
+    export LC_ALL=C
+
+%runscript
+    # This runs when you execute the container
+    echo "Container is running..."
+    exec python "$@"
