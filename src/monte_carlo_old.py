@@ -1,11 +1,11 @@
 import argparse
+from email import parser
 import time
 import numpy as np
-import os
 from mpi4py import MPI
 
 def estimate_pi(local_samples, seed):
-    """Estimate pi using Monte Carlo method with random points in unit square."""
+    # Use the rank-specific seed to ensure randomness across processors
     np.random.seed(seed)
     
     # Generate random points
@@ -22,15 +22,9 @@ def main():
     size = comm.Get_size()
 
     # Parse arguments
-    parser = argparse.ArgumentParser(description='Monte Carlo Pi Estimation with MPI')
-    parser.add_argument('--samples', type=int, default=10000000, 
-                       help='Total number of samples (default: 10 million)')
-    parser.add_argument('--seed', type=int, default=42, 
-                       help='Random seed for reproducibility (default: 42)')
-    parser.add_argument('--output', type=str, default='results/scaling_data.csv', 
-                       help='Output CSV file path')
-    parser.add_argument('--weak-scaling', action='store_true', 
-                       help='Flag for weak scaling experiments')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--samples', type=int, default=10000000)
+    parser.add_argument('--seed', type=int, default=None, help='Random seed for reproducibility')
     args = parser.parse_args()
 
     # Split work
@@ -43,15 +37,16 @@ def main():
     if rank == 0:
         print(f"Running Monte Carlo Pi on {size} processors.")
         print(f"Total Samples: {total_samples}")
-        print(f"Seed: {args.seed}")
-        print(f"Output: {args.output}")
-        if args.weak_scaling:
-            print(f"Mode: Weak Scaling (samples per rank: {total_samples // size})")
         start_time = time.time()
 
     # --- THE WORK ---
-    # Use reproducible seed: base_seed + rank ensures different but reproducible streams
-    my_count = estimate_pi(local_samples, seed=args.seed + rank)
+    # We use (rank + time) to ensure every run is random
+    if args.seed is not None:
+        my_seed = args.seed + rank
+    else:
+        my_seed = rank + int(time.time())
+
+    my_count = estimate_pi(local_samples, seed=my_seed)
     
     # --- THE COMMUNICATION ---
     # Sum up all 'my_count' values into 'total_count' on Rank 0
@@ -68,18 +63,15 @@ def main():
         print(f"Time:        {elapsed:.4f} sec")
         
         # Ensure output directory exists
-        output_dir = os.path.dirname(args.output)
-        if output_dir:
-            os.makedirs(output_dir, exist_ok=True)
+        os.makedirs(os.path.dirname(args.output), exist_ok=True)
         
         # Check if file exists and needs header
         file_exists = os.path.exists(args.output)
-        needs_header = not file_exists or os.path.getsize(args.output) == 0
         
         # Save to CSV
         with open(args.output, "a") as f:
             # Write header if file is new or empty
-            if needs_header:
+            if not file_exists or os.path.getsize(args.output) == 0:
                 if args.weak_scaling:
                     f.write("ranks,samples_per_rank,total_samples,time_sec,pi_estimate,error\n")
                 else:
