@@ -1,4 +1,5 @@
 import argparse
+from email import parser
 import time
 import numpy as np
 from mpi4py import MPI
@@ -22,7 +23,8 @@ def main():
 
     # Parse arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('--samples', type=int, default=10000000) # Default 10 million
+    parser.add_argument('--samples', type=int, default=10000000)
+    parser.add_argument('--seed', type=int, default=None, help='Random seed for reproducibility')
     args = parser.parse_args()
 
     # Split work
@@ -39,7 +41,12 @@ def main():
 
     # --- THE WORK ---
     # We use (rank + time) to ensure every run is random
-    my_count = estimate_pi(local_samples, seed=rank + int(time.time()))
+    if args.seed is not None:
+        my_seed = args.seed + rank
+    else:
+        my_seed = rank + int(time.time())
+
+    my_count = estimate_pi(local_samples, seed=my_seed)
     
     # --- THE COMMUNICATION ---
     # Sum up all 'my_count' values into 'total_count' on Rank 0

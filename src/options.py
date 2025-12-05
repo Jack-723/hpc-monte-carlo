@@ -1,4 +1,5 @@
 import argparse
+from html import parser
 import time
 import numpy as np
 from mpi4py import MPI
@@ -37,6 +38,7 @@ def main():
     # Parse arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('--samples', type=int, default=10000000)
+    parser.add_argument('--seed', type=int, default=None, help='Random seed for reproducibility')
     args = parser.parse_args()
 
     total_samples = args.samples
@@ -49,7 +51,12 @@ def main():
         start_time = time.time()
 
     # --- THE WORK ---
-    local_sum = simulate_paths(S0, K, T, r, sigma, local_samples, seed=rank + int(time.time()))
+    if args.seed is not None:
+        my_seed = args.seed + rank
+    else:
+        my_seed = rank + int(time.time())
+
+    local_sum = simulate_paths(S0, K, T, r, sigma, local_samples, seed=my_seed)
 
     # --- THE COMMUNICATION ---
     # Sum all payoffs from everyone
