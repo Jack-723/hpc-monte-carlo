@@ -12,7 +12,7 @@
 
 ## 1. Executive Summary
 
-Monte Carlo (MC) simulations are critical for financial risk analysis, requiring billions of samples to achieve the precision demanded by regulatory frameworks (Basel III) and high-frequency trading. Our baseline implementation demonstrates 85% parallel efficiency on 16 CPU cores, but production scenarios require $10^{11}$-$10^{12}$ samples—infeasible on departmental clusters. We propose to scale our MPI-based MC engine to **1,024 cores on EuroHPC infrastructure**, targeting:
+Monte Carlo (MC) simulations are critical for financial risk analysis, requiring billions of samples to achieve the precision demanded by regulatory frameworks (Basel III) and high-frequency trading. Our baseline implementation demonstrates **69-93% parallel efficiency on 4 CPU cores** (options pricing), but production scenarios require $10^{11}$-$10^{12}$ samples—infeasible on local systems. We propose to scale our MPI-based MC engine to **1,024 cores on EuroHPC infrastructure**, targeting:
 
 1. **Weak scaling validation** to 512 ranks with sustained >70% efficiency
 2. **Production-scale runs** for portfolio risk ($10^{11}$ paths)
@@ -33,7 +33,7 @@ Monte Carlo (MC) simulations are critical for financial risk analysis, requiring
 
 **O2. Production-scale financial risk simulations**  
 - Portfolio of 1,000 options requiring $10^{11}$ total paths
-- Target time-to-solution: <2 hours (vs. 48h on local cluster)
+- Target time-to-solution: <2 hours (vs. 48h on local system)
 
 **O3. Mixed-precision optimization**  
 - Implement float32 sampling with float64 accumulation
@@ -90,8 +90,8 @@ Monte Carlo (MC) simulations are critical for financial risk analysis, requiring
 **TRL Assessment: Level 5 (Validation in Relevant Environment)**
 
 **Completed (TRL 1-4):**
-- [✓] Basic MPI parallelization (1-16 ranks)
-- [✓] Strong/weak scaling on departmental cluster
+- [✓] Basic MPI parallelization (1-4 ranks validated)
+- [✓] Strong scaling characterization (56-93% efficiency demonstrated)
 - [✓] Apptainer containerization
 - [✓] Reproducible seeds and versioning
 
@@ -336,30 +336,27 @@ sum_f64 = np.sum(payoffs_f32, dtype=np.float64)  # Kahan summation
 
 **Technical Support:**
 - LUMI Support Team
-- Magic Castle HPC Cluster
+- University HPC resources for development
 
 ---
 
 ## 12. Institutional Support
 
-- **Compute Canada / Alliance:** Previous allocation on Magic Castle cluster
-- **University HPC Center:** Local testing and development resources
+- **University HPC Center:** Local multi-core systems for testing and development
+- **Course Infrastructure:** Access to educational computing resources
 - **Industry Partner:** [Bank name] provides domain expertise and validation datasets
 
 ---
 
 **Contact Information:**  
 Jack (Principal Investigator)  
-High Performance Computing Course Project  
-Magic Castle Cluster
+High Performance Computing Course Project
 
 ---
 
 **Total Pages:** 8 (excluding references)  
-**Submission Date:** [Fill in]
+**Submission Date:** December 2025
 
 ---
 
 **[END OF PROPOSAL]**
-
-*Note to students: This template follows EuroHPC Development Access format. Adjust node-hour estimates based on actual test runs. Add letters of support if required.*
