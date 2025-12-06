@@ -7,10 +7,9 @@
 ## Nodes Used
 | Property | Value |
 |----------|-------|
-| Node Type | TBD |
-| CPU | TBD |
-| Cores/Node | TBD |
-| Memory/Node | TBD |
+| Node Type | node1-8 |
+| CPU | 2 cores per node |
+| Memory/Node | 4000 MB per node |
 
 *Update after running `scontrol show node` on the cluster*
 
