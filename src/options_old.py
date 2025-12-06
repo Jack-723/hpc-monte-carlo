@@ -1,21 +1,16 @@
 import argparse
+from html import parser
 import time
 import numpy as np
-import os
 from mpi4py import MPI
 
 def simulate_paths(S0, K, T, r, sigma, samples, seed):
     """
-    Simulate stock price paths and calculate European Call option payoffs.
-    
-    Parameters:
     S0: Initial stock price
     K:  Strike price
     T:  Time to maturity (years)
     r:  Risk-free interest rate
     sigma: Volatility
-    samples: Number of Monte Carlo paths
-    seed: Random seed for reproducibility
     """
     np.random.seed(seed)
     
@@ -33,7 +28,7 @@ def main():
     rank = comm.Get_rank()
     size = comm.Get_size()
 
-    # Parameters for the Option (Apple Stock-like)
+    # Parameters for the Option (Apple Stock-ish)
     S0 = 100.0   # Current Price
     K = 105.0    # Strike Price
     T = 1.0      # One year
@@ -41,13 +36,9 @@ def main():
     sigma = 0.2  # 20% volatility
     
     # Parse arguments
-    parser = argparse.ArgumentParser(description='Monte Carlo European Call Option Pricing')
-    parser.add_argument('--samples', type=int, default=10000000,
-                       help='Total number of Monte Carlo paths (default: 10 million)')
-    parser.add_argument('--seed', type=int, default=42,
-                       help='Random seed for reproducibility (default: 42)')
-    parser.add_argument('--output', type=str, default='results/options_data.csv',
-                       help='Output CSV file path')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--samples', type=int, default=10000000)
+    parser.add_argument('--seed', type=int, default=None, help='Random seed for reproducibility')
     args = parser.parse_args()
 
     total_samples = args.samples
@@ -57,15 +48,15 @@ def main():
 
     if rank == 0:
         print(f"Running Options Pricing (Black-Scholes) on {size} processors.")
-        print(f"Parameters: S0=${S0}, K=${K}, T={T}yr, r={r}, σ={sigma}")
-        print(f"Total Samples: {total_samples}")
-        print(f"Seed: {args.seed}")
-        print(f"Output: {args.output}")
         start_time = time.time()
 
     # --- THE WORK ---
-    # Use reproducible seed: base_seed + rank
-    local_sum = simulate_paths(S0, K, T, r, sigma, local_samples, seed=args.seed + rank)
+    if args.seed is not None:
+        my_seed = args.seed + rank
+    else:
+        my_seed = rank + int(time.time())
+
+    local_sum = simulate_paths(S0, K, T, r, sigma, local_samples, seed=my_seed)
 
     # --- THE COMMUNICATION ---
     # Sum all payoffs from everyone
@@ -82,19 +73,8 @@ def main():
         print(f"Option Price: ${option_price:.4f}")
         print(f"Time:         {elapsed:.4f} sec")
         
-        # Ensure output directory exists
-        output_dir = os.path.dirname(args.output)
-        if output_dir:
-            os.makedirs(output_dir, exist_ok=True)
-        
-        # Check if file exists and needs header
-        file_exists = os.path.exists(args.output)
-        needs_header = not file_exists or os.path.getsize(args.output) == 0
-        
-        # Save to CSV
-        with open(args.output, "a") as f:
-            if needs_header:
-                f.write("ranks,samples,time_sec,option_price\n")
+        # Append to a new results file
+        with open("results/options_data.csv", "a") as f:
             f.write(f"{size},{total_samples},{elapsed},{option_price}\n")
 
 if __name__ == "__main__":
