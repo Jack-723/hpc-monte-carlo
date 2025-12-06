@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH -J monte-carlo-options
-#SBATCH --account=def-someprof     # CHANGE THIS to your allocation
-#SBATCH --nodes=4                   # Request 4 nodes
-#SBATCH --ntasks-per-node=4         # 4 MPI ranks per node = 16 total
+#SBATCH --account=def-sponsor00
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=4         # 4 MPI ranks per node = 8 total
 #SBATCH --cpus-per-task=1           # 1 CPU per task
 #SBATCH --mem-per-cpu=2G            # 2GB memory per CPU
 #SBATCH --time=00:30:00             # 30 minute time limit
@@ -21,12 +21,11 @@ echo "Working Directory: $(pwd)"
 echo "Git Commit: $(git rev-parse --short HEAD 2>/dev/null || echo 'N/A')"
 echo "========================================="
 
-# Load required modules (adjust for your cluster)
-module purge
-module load StdEnv/2023
-module load gcc/12.3.0
-module load openmpi/4.1.5
-module load python/3.11.5
+# Load required modules
+module load gcc
+module load openmpi
+module load python
+module load mpi4py
 
 # Set environment variables
 export OMP_NUM_THREADS=1

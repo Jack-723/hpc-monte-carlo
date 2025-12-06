@@ -21,7 +21,7 @@ This project implements a parallelized Monte Carlo engine using **Python** and *
 
 We define success based on the following HPC performance metrics:
 
-* **Strong Scaling:** Achieve near-linear speedup as we scale from 1 to 16 MPI ranks.
+* **Strong Scaling:** Achieve near-linear speedup as we scale from 1 to 8 MPI ranks.
 * **Parallel Efficiency:** Maintain >70% efficiency at maximum scale.
 * **Reproducibility:** A fully containerized environment (Apptainer) that yields identical results on any cluster.
 
