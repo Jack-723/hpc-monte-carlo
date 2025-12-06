@@ -1,9 +1,9 @@
 # EuroHPC Development Access Proposal
 ## Scaling Monte Carlo Simulations to Petascale for High-Precision Financial Risk Analysis
 
-**Principal Investigator:** Project Lead  
-**Institution:** University HPC Research Group  
-**Research Group:** High-Performance Computing and Computational Finance  
+**Principal Investigator:** Jack  
+**Team Members:** Kenny, Leena Barq, Omar, Salmane, Adrian  
+**Project:** Monte Carlo Simulation with MPI (HPC Course)  
 **Target System:** LUMI-C (CPU partition)  
 **Requested Resources:** 50,000 CPU node-hours  
 **Project Duration:** 6 months  
@@ -324,17 +324,19 @@ sum_f64 = np.sum(payoffs_f32, dtype=np.float64)  # Kahan summation
 
 ## 11. Project Team
 
-**Principal Investigator:** Research Team Lead  
-- Graduate student, HPC & Computational Finance
-- Focus: Parallel algorithms for stochastic simulation
+**Team Members:**
+- Jack
+- Kenny
+- Leena Barq
+- Omar
+- Salmane
+- Adrian
 
-**Co-Investigators:**
-- Faculty Advisor, Professor of Computer Science
-- Industry collaborators in quantitative finance
+**Project Focus:** Parallel Monte Carlo simulation using MPI for π approximation and options pricing
 
-**Collaborators:**
-- LUMI Support Team (technical assistance)
-- University HPC Center
+**Technical Support:**
+- LUMI Support Team
+- Magic Castle HPC Cluster
 
 ---
 
@@ -347,9 +349,9 @@ sum_f64 = np.sum(payoffs_f32, dtype=np.float64)  # Kahan summation
 ---
 
 **Contact Information:**  
-Project Team  
-Contact via course instructors  
-University HPC Lab
+Jack (Principal Investigator)  
+High Performance Computing Course Project  
+Magic Castle Cluster
 
 ---
 

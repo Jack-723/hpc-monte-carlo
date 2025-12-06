@@ -1,8 +1,8 @@
 # High-Performance Monte Carlo Simulations: Parallel Implementation and Scaling Analysis
 
-**Authors:** Group Project Team  
+**Authors:** Jack, Kenny, Leena Barq, Omar, Salmane, Adrian  
 **Course:** High Performance Computing  
-**Institution:** University  
+**Project:** Monte Carlo Simulation with MPI  
 **Date:** December 2025
 
 ---
