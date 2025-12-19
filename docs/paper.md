@@ -70,10 +70,11 @@ Our work focuses on CPU-based MPI parallelization with standard pseudorandom num
 ### 3.1 Hardware and Software
 
 **Compute Environment:**
-- HPC cluster with Slurm scheduler
-- Intel/AMD multi-core CPUs
-- Python 3.11.5, OpenMPI 4.1.5, mpi4py 3.1.4
+- Magic Castle HPC cluster with Slurm scheduler (2 nodes: gpu-node1, gpu-node2)
+- Intel/AMD x86_64 multi-core CPUs (4 cores per node)
+- Python 3.11.5, OpenMPI 4.1.5, mpi4py 4.0.3
 - NumPy 1.24.3 (Mersenne Twister RNG)
+- Job verification: Slurm Job ID 6677 (see `results/slurm_job_history.txt` and `results/strong_6677.out`)
 
 ### 3.2 Algorithmic Approach
 
@@ -113,6 +114,7 @@ total_inside = comm.reduce(inside, op=MPI.SUM, root=0)
 - Fixed seeds: rank-specific seeds `seed_r = 42 + r` ensure reproducibility while maintaining statistical independence
 - Versioning: All dependencies pinned in `requirements.txt`
 - Containerization: `env/project.def` captures entire environment
+- Cluster validation: Slurm job logs prove multi-node execution (Job 6677: 2 nodes, 8 ranks, gpu-node[1-2])
 
 ---
 
@@ -124,7 +126,8 @@ total_inside = comm.reduce(inside, op=MPI.SUM, root=0)
 
 **Configuration:**
 - Problem size: $N = 10^8$ samples (100 million)
-- Ranks tested: 1, 2, 4, 8
+- Ranks tested: 1, 2, 4, 8 (distributed across 2 cluster nodes)
+- Hardware: Magic Castle HPC (Job ID 6677, ran Dec 6 2025)
 - Repetitions: Single run per configuration (deterministic seed)
 - Metrics: wall-clock time, speedup $S(P) = T(1)/T(P)$, efficiency $E(P) = S(P)/P$
 

@@ -2,7 +2,7 @@
 ## Scaling Monte Carlo Simulations to Petascale for High-Precision Financial Risk Analysis
 
 **Principal Investigator:** Jack  
-**Team Members:** Kenny, Leena Barq, Omar, Salmane, Adrian  
+**Team Members:** Kenny, Leena , Omar, Salmane, Adrian  
 **Project:** Monte Carlo Simulation with MPI (HPC Course)  
 **Target System:** LUMI-C (CPU partition)  
 **Requested Resources:** 50,000 CPU node-hours  
@@ -90,10 +90,12 @@ Monte Carlo (MC) simulations are critical for financial risk analysis, requiring
 **TRL Assessment: Level 5 (Validation in Relevant Environment)**
 
 **Completed (TRL 1-4):**
-- [✓] Basic MPI parallelization (1-4 ranks validated)
-- [✓] Strong scaling characterization (56-93% efficiency demonstrated)
+- [✓] Basic MPI parallelization (1-8 ranks validated on 2-node cluster)
+- [✓] Strong scaling characterization (64-73% efficiency demonstrated at 8 ranks)
+- [✓] Weak scaling validation (near-constant time for π, acceptable for options)
 - [✓] Apptainer containerization
 - [✓] Reproducible seeds and versioning
+- [✓] Multi-node cluster validation (Job ID 6677: 2 nodes, gpu-node[1-2])
 
 **In Progress (TRL 5-6):**
 - [ ] Scaling to 512+ ranks on HPC system
