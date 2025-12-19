@@ -348,10 +348,6 @@ sum_f64 = np.sum(payoffs_f32, dtype=np.float64)  # Kahan summation
 
 ---
 
-**Contact Information:**  
-Jack (Principal Investigator)  
-High Performance Computing Course Project
-
 ---
 
 **Total Pages:** 8 (excluding references)  

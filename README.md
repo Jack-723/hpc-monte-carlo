@@ -25,6 +25,8 @@ We define success based on the following HPC performance metrics:
 * **Parallel Efficiency:** Maintain >70% efficiency at maximum scale.
 * **Reproducibility:** A fully containerized environment (Apptainer) that yields identical results on any cluster.
 
+**Achieved:** 5.86× speedup at 8 ranks (73% efficiency) for options pricing.
+
 ## 4. Quick Start
 
 ### Prerequisites
@@ -97,9 +99,8 @@ ls results/
 ├── data/                 # Data information (no external datasets needed)
 ├── results/              # Output CSV and plots
 ├── docs/                 # Documentation
-│   ├── paper_template.md
-│   ├── eurohpc_proposal_template.md
-│   └── pitch_slides_content.md
+│   ├── paper.md          # Technical paper (6 pages)
+│   └── eurohpc_proposal.md  # EuroHPC proposal (8 pages)
 ├── reproduce.md          # Reproducibility guide
 ├── SYSTEM.md            # Hardware/software specs
 ├── requirements.txt     # Python dependencies
@@ -110,26 +111,28 @@ ls results/
 
 - ✅ **Reproducible:** Fixed seeds ensure identical results across runs
 - ✅ **Portable:** Apptainer container for any HPC system
-- ✅ **Scalable:** Tested 1-16 MPI ranks with >85% efficiency
-- ✅ **Well-documented:** Complete paper, proposal, and reproducibility guide
+- ✅ **Scalable:** Tested 1-8 MPI ranks with 73% efficiency at max scale
+- ✅ **Well-documented:** Complete paper and EuroHPC proposal
 - ✅ **Open-source:** MIT license
 
 ## 7. Results Summary
 
-### Strong Scaling (Preliminary - Local Runs)
+### Strong Scaling (100M samples)
 
-| Ranks | Pi Time (s) | Options Time (s) | Efficiency |
-|-------|-------------|------------------|------------|
-| 1     | 0.21        | 0.32             | 100%       |
-| 2     | 0.14        | 0.17             | 75-95%     |
-| 4     | 0.09        | 0.11             | 58-87%     |
+| Ranks | Pi Time (s) | Options Time (s) | Speedup | Efficiency |
+|-------|-------------|------------------|---------|------------|
+| 1     | 1.90        | 3.40             | 1.00×   | 100%       |
+| 2     | 0.95        | 1.71             | 2.00×   | 99%        |
+| 4     | 0.54        | 0.94             | 3.51×   | 90%        |
+| 8     | 0.37        | 0.58             | 5.15×   | 73%        |
 
-**Note:** Full cluster results (8-16 ranks) to be added after Magic Castle runs.
-
+### Weak Scaling (10M samples/rank)
 ## 8. Documentation
 
 - **Reproducibility:** See [reproduce.md](reproduce.md)
 - **System specs:** See [SYSTEM.md](SYSTEM.md)
+- **Paper:** See [docs/paper.md](docs/paper.md)
+- **EuroHPC Proposal:** See [docs/eurohpc_proposal.md](docs/eurohpc_proposal.md)
 - **Paper:** See [docs/paper_template.md](docs/paper_template.md)
 - **Proposal:** See [docs/eurohpc_proposal_template.md](docs/eurohpc_proposal_template.md)
 - **Pitch:** See [docs/pitch_slides_content.md](docs/pitch_slides_content.md)
@@ -140,26 +143,23 @@ If you use this code in your research, please cite:
 
 ```bibtex
 @software{hpc_monte_carlo_2025,
-  author = {[Your Names]},
+```bibtex
+@software{hpc_monte_carlo_2025,
+  author = {Jack and Kenny and Leena Barq and Omar and Salmane and Adrian},
   title = {High-Performance Monte Carlo Simulations with MPI},
   year = {2025},
   url = {https://github.com/Jack-723/hpc-monte-carlo}
 }
-```
-
-## 10. License
+```10. License
 
 MIT License - see LICENSE file for details.
 
 ## 11. Contact
 
-For questions or issues:
-- Open a GitHub issue
-- Contact course instructors
-- Email: [your-email]
+## 11. Authors
 
-## 12. Acknowledgments
+Jack, Kenny, Leena Barq, Omar, Salmane, Adrian
 
-- Magic Castle cluster (Alliance/EESSI)
+## 12. Acknowledgments (Alliance/EESSI)
 - Course instructors and TAs
 - OpenMPI and NumPy communities

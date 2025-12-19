@@ -200,7 +200,7 @@ Pi approximation exhibits near-ideal weak scaling with time remaining roughly co
 
 **Profiling Analysis:**
 
-Using timing breakdowns and system monitoring:
+Using Python's time module for component-level timing breakdowns:
 
 | Component | % Time (π) | % Time (Options) |
 |-----------|------------|------------------|
@@ -208,6 +208,8 @@ Using timing breakdowns and system monitoring:
 | Compute   | ~50%       | ~60%             |
 | MPI Reduce| <1%        | <1%              |
 | I/O       | ~4%        | ~4%              |
+
+**Note:** Detailed profiling with tools like `perf`, `VTune`, or `sacct` resource tracking would provide deeper insights into cache behavior, memory bandwidth utilization, and instruction-level bottlenecks, but was not available for this cluster run.
 
 **Bottleneck Identification:**
 1. **Compute-bound:** 95%+ time in RNG + arithmetic
@@ -229,13 +231,13 @@ Using timing breakdowns and system monitoring:
 
 **Why not 100% efficiency?**
 
-1. **Memory Bandwidth Saturation:** 4 cores simultaneously reading/writing to DRAM saturates memory controllers (~50 GB/s theoretical, ~40 GB/s achieved)
+1. **Memory Bandwidth Saturation:** 8 cores simultaneously reading/writing to DRAM saturates memory controllers (~50 GB/s theoretical, ~40 GB/s achieved)
 2. **Cache Coherency Overhead:** Shared L3 cache requires coherency protocol traffic
 3. **OS Scheduling:** Context switches and interrupt handling introduce noise
 
 **Comparison to Related Work:**
 - Dixon et al. (2012) achieved >90% efficiency on GPUs with higher memory bandwidth
-- Our CPU results (56-69% at 4 ranks) align with typical multi-core scaling limits
+- Our CPU results (64-73% at 8 ranks) align with typical multi-core scaling limits
 
 ### 6.2 Practical Implications
 
@@ -255,6 +257,7 @@ Using timing breakdowns and system monitoring:
 - Python overhead compared to compiled languages (C++/Fortran)
 - Synthetic workload (real portfolios have path dependencies)
 - Standard pseudorandom numbers (not low-discrepancy sequences)
+- Limited profiling tools available on cluster (timing analysis only; no perf/VTune access)
 
 **Future Work:**
 - Scale to 16-64 ranks across multiple nodes
@@ -356,5 +359,5 @@ python src/plot_results.py results/options_data.csv --output results/options_dat
 
 ---
 
-**End of Paper (6 pages)**
+**End of Paper**
 
