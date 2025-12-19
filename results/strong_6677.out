@@ -1,0 +1,41 @@
+Job ID: 6677
+Nodes: 2
+Tasks: 8
+Start: Sat Dec  6 14:27:06 UTC 2025
+=========================================
+Testing with 1 ranks
+=========================================
+=========================================
+Testing with 2 ranks
+=========================================
+Running Monte Carlo Pi on 2 processors.
+Total Samples: 100000000
+Pi Estimate: 3.14169588
+Error:       0.00010322641020676926
+Time:        0.9510 sec
+Running Options Pricing (Black-Scholes) on 2 processors.
+Option Price: $8.0210
+Time:         1.7136 sec
+=========================================
+Testing with 4 ranks
+=========================================
+Running Monte Carlo Pi on 4 processors.
+Total Samples: 100000000
+Pi Estimate: 3.14163396
+Error:       4.13064102069427e-05
+Time:        0.5415 sec
+Running Options Pricing (Black-Scholes) on 4 processors.
+Option Price: $8.0206
+Time:         0.9390 sec
+=========================================
+Testing with 8 ranks
+=========================================
+Running Monte Carlo Pi on 8 processors.
+Total Samples: 100000000
+Pi Estimate: 3.141671
+Error:       7.83464102069864e-05
+Time:        0.3688 sec
+Running Options Pricing (Black-Scholes) on 8 processors.
+Option Price: $8.0221
+Time:         0.5804 sec
+End: Sat Dec  6 14:27:24 UTC 2025

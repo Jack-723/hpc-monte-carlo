@@ -1,0 +1,109 @@
+JobID           JobName  Partition  AllocCPUS      State    Elapsed        NodeList 
+------------ ---------- ---------- ---------- ---------- ---------- --------------- 
+4881         heat_para+ cpubase_b+          0     FAILED   00:00:00   None assigned 
+4883         heat_para+ cpubase_b+          8  COMPLETED   00:01:31   gpu-node[1-2] 
+4883.batch        batch                     4  COMPLETED   00:01:31       gpu-node1 
+4883.extern      extern                     8  COMPLETED   00:01:31   gpu-node[1-2] 
+4883.0            orted                     8  COMPLETED   00:01:31       gpu-node2 
+4885         heat_para+ cpubase_b+          4  COMPLETED   00:01:16       gpu-node2 
+4885.batch        batch                     4  COMPLETED   00:01:16       gpu-node2 
+4885.extern      extern                     4  COMPLETED   00:01:16       gpu-node2 
+4887           heat_gpu cpubase_b+          1     FAILED   00:00:02       gpu-node1 
+4887.batch        batch                     1     FAILED   00:00:02       gpu-node1 
+4887.extern      extern                     1  COMPLETED   00:00:02       gpu-node1 
+4889           heat_gpu cpubase_b+          1  COMPLETED   00:00:02       gpu-node1 
+4889.batch        batch                     1  COMPLETED   00:00:02       gpu-node1 
+4889.extern      extern                     1  COMPLETED   00:00:02       gpu-node1 
+4891           heat_gpu cpubase_b+          1  COMPLETED   00:00:02       gpu-node2 
+4891.batch        batch                     1  COMPLETED   00:00:02       gpu-node2 
+4891.extern      extern                     1  COMPLETED   00:00:02       gpu-node2 
+4892           heat_gpu cpubase_b+          1  COMPLETED   00:00:02       gpu-node1 
+4892.batch        batch                     1  COMPLETED   00:00:02       gpu-node1 
+4892.extern      extern                     1  COMPLETED   00:00:02       gpu-node1 
+4893         spawner-j+ cpubase_b+          1 CANCELLED+   00:22:31       gpu-node1 
+4893.batch        batch                     1  CANCELLED   00:22:32       gpu-node1 
+4893.extern      extern                     1  COMPLETED   00:22:33       gpu-node1 
+4894           heat_gpu cpubase_b+          1  COMPLETED   00:00:04       gpu-node2 
+4894.batch        batch                     1  COMPLETED   00:00:04       gpu-node2 
+4894.extern      extern                     1  COMPLETED   00:00:04       gpu-node2 
+4903          mc-strong cpubase_b+          0     FAILED   00:00:00   None assigned 
+5692          mc-strong cpubase_b+          0 CANCELLED+   00:00:00   None assigned 
+5710          mc-strong cpubase_b+          4  COMPLETED   00:00:02   gpu-node[1-2] 
+5710.batch        batch                     2  COMPLETED   00:00:02       gpu-node1 
+5710.extern      extern                     4  COMPLETED   00:00:02   gpu-node[1-2] 
+5732            mc-weak cpubase_b+          0     FAILED   00:00:00   None assigned 
+5745         monte-car+ cpubase_b+          4  COMPLETED   00:00:02   gpu-node[1-2] 
+5745.batch        batch                     2  COMPLETED   00:00:02       gpu-node1 
+5745.extern      extern                     4  COMPLETED   00:00:02   gpu-node[1-2] 
+5748            mc-weak cpubase_b+          0     FAILED   00:00:00   None assigned 
+5752            mc-weak cpubase_b+          0 CANCELLED+   00:00:00   None assigned 
+5877          mc-strong cpubase_b+          4  COMPLETED   00:00:06   gpu-node[1-2] 
+5877.batch        batch                     2  COMPLETED   00:00:06       gpu-node1 
+5877.extern      extern                     4  COMPLETED   00:00:06   gpu-node[1-2] 
+5877.0           python                     4  COMPLETED   00:00:02   gpu-node[1-2] 
+5877.1           python                     4  COMPLETED   00:00:02   gpu-node[1-2] 
+5879            mc-weak cpubase_b+          4  COMPLETED   00:00:04   gpu-node[1-2] 
+5879.batch        batch                     2  COMPLETED   00:00:04       gpu-node1 
+5879.extern      extern                     4  COMPLETED   00:00:04   gpu-node[1-2] 
+5879.0           python                     4     FAILED   00:00:01   gpu-node[1-2] 
+6114            mc-weak cpubase_b+          4  COMPLETED   00:00:03   gpu-node[1-2] 
+6114.batch        batch                     2  COMPLETED   00:00:03       gpu-node1 
+6114.extern      extern                     4  COMPLETED   00:00:03   gpu-node[1-2] 
+6114.0           python                     4  COMPLETED   00:00:02   gpu-node[1-2] 
+6649          mc-strong cpubase_b+          0     FAILED   00:00:00   None assigned 
+6677          mc-strong cpubase_b+          8  COMPLETED   00:00:18   gpu-node[1-2] 
+6677.batch        batch                     4  COMPLETED   00:00:18       gpu-node1 
+6677.extern      extern                     8  COMPLETED   00:00:18   gpu-node[1-2] 
+6677.0           python                     1 OUT_OF_ME+   00:00:03       gpu-node1 
+6677.1           python                     1 OUT_OF_ME+   00:00:05       gpu-node2 
+6677.2           python                     2  COMPLETED   00:00:01   gpu-node[1-2] 
+6677.3           python                     2  COMPLETED   00:00:02   gpu-node[1-2] 
+6677.4           python                     4  COMPLETED   00:00:02   gpu-node[1-2] 
+6677.5           python                     4  COMPLETED   00:00:01   gpu-node[1-2] 
+6677.6           python                     8  COMPLETED   00:00:01   gpu-node[1-2] 
+6677.7           python                     8  COMPLETED   00:00:02   gpu-node[1-2] 
+6828            mc-weak cpubase_b+          8  COMPLETED   00:00:05   gpu-node[1-2] 
+6828.batch        batch                     4  COMPLETED   00:00:05       gpu-node1 
+6828.extern      extern                     8  COMPLETED   00:00:05   gpu-node[1-2] 
+6828.0           python                     1  COMPLETED   00:00:01       gpu-node1 
+6828.1           python                     2  COMPLETED   00:00:01   gpu-node[1-2] 
+6828.2           python                     4  COMPLETED   00:00:01   gpu-node[1-2] 
+6828.3           python                     8  COMPLETED   00:00:01   gpu-node[1-2] 
+7034         monte-car+ cpubase_b+          8  COMPLETED   00:00:08   gpu-node[1-2] 
+7034.batch        batch                     4  COMPLETED   00:00:08       gpu-node1 
+7034.extern      extern                     8  COMPLETED   00:00:08   gpu-node[1-2] 
+7034.0           python                     1     FAILED   00:00:01       gpu-node1 
+7034.1           python                     2     FAILED   00:00:00   gpu-node[1-2] 
+7034.2           python                     4     FAILED   00:00:01   gpu-node[1-2] 
+7034.3           python                     8     FAILED   00:00:00   gpu-node[1-2] 
+7034.4           python                     1     FAILED   00:00:01       gpu-node1 
+7034.5           python                     2     FAILED   00:00:00   gpu-node[1-2] 
+7034.6           python                     4     FAILED   00:00:00   gpu-node[1-2] 
+7034.7           python                     8     FAILED   00:00:01   gpu-node[1-2] 
+7090         monte-car+ cpubase_b+          8  COMPLETED   00:00:08   gpu-node[1-2] 
+7090.batch        batch                     4  COMPLETED   00:00:08       gpu-node1 
+7090.extern      extern                     8  COMPLETED   00:00:08   gpu-node[1-2] 
+7090.0           python                     1     FAILED   00:00:01       gpu-node1 
+7090.1           python                     2     FAILED   00:00:01   gpu-node[1-2] 
+7090.2           python                     4     FAILED   00:00:01   gpu-node[1-2] 
+7090.3           python                     8     FAILED   00:00:01   gpu-node[1-2] 
+7090.4           python                     1     FAILED   00:00:00       gpu-node1 
+7090.5           python                     2     FAILED   00:00:01   gpu-node[1-2] 
+7090.6           python                     4     FAILED   00:00:01   gpu-node[1-2] 
+7090.7           python                     8     FAILED   00:00:00   gpu-node[1-2] 
+7145         monte-car+ cpubase_b+          8  COMPLETED   00:00:11   gpu-node[1-2] 
+7145.batch        batch                     4  COMPLETED   00:00:11       gpu-node1 
+7145.extern      extern                     8  COMPLETED   00:00:11   gpu-node[1-2] 
+7145.0           python                     1  COMPLETED   00:00:01       gpu-node1 
+7145.1           python                     2  COMPLETED   00:00:01   gpu-node[1-2] 
+7145.2           python                     4  COMPLETED   00:00:01   gpu-node[1-2] 
+7145.3           python                     8  COMPLETED   00:00:01   gpu-node[1-2] 
+7145.4           python                     1  COMPLETED   00:00:01       gpu-node1 
+7145.5           python                     2  COMPLETED   00:00:01   gpu-node[1-2] 
+7145.6           python                     4  COMPLETED   00:00:01   gpu-node[1-2] 
+7145.7           python                     8  COMPLETED   00:00:02   gpu-node[1-2] 
+33510         mc-strong cpubase_b+          8 CANCELLED+   00:13:36   gpu-node[1-2] 
+33510.batch       batch                     4  CANCELLED   00:13:37       gpu-node1 
+33510.extern     extern                     8  COMPLETED   00:13:38   gpu-node[1-2] 
+33510.0          python                     1 OUT_OF_ME+   00:00:03       gpu-node1 
+33510.1          python                     1  CANCELLED   00:13:33       gpu-node2 
